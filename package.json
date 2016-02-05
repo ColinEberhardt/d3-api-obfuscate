@@ -1,0 +1,22 @@
+{
+  "name": "d3-api-obfuscate",
+  "version": "1.0.0",
+  "description": "Crawls the D3 API adding obfuscated methods",
+  "main": "obfustcate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColinEberhardt/d3-api-obfuscate.git"
+  },
+  "author": "Colin Eberhardt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ColinEberhardt/d3-api-obfuscate/issues"
+  },
+  "homepage": "https://github.com/ColinEberhardt/d3-api-obfuscate#readme",
+  "dependencies": {
+    "d3fc": "^5.2.0"
+  }
+}
