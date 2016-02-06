@@ -1,10 +1,10 @@
-var d = shortenObject(d3);
-shortenObject(d.selection.prototype);
+var d = shortenObject(d3,  Object.keys, 'd3', 'd');
+shortenObject(d.selection.prototype, Object.keys, 'd3.select', 'selection');
 shortenObject(d.selection.enter.prototype);
 shortenObject(d.transition.prototype);
 
 // Math functions are not enumerable, so we use a different mechanism for discovering them
-var M = shortenObject(Math, Object.getOwnPropertyNames);
+var M = shortenObject(Math, Object.getOwnPropertyNames, 'Math', 'M');
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,

@@ -58,24 +58,34 @@ function adapt(source) {
   return adapted;
 }
 
+function appendPath(path, key) {
+    return path ? path + "." + key : undefined;
+}
+
 // Recursively adds shortened names to all the properties of an object
-function shortenObject(obj, enumerator) {
+function shortenObject(obj, enumerator, path, shortPath) {
   enumerator = enumerator || Object.keys;
   enumerator(obj)
     .forEach(function(key) {
+      var shortName = findShortestName(enumerator(obj), key);
+      var propertyPath = appendPath(path, key);
+      var shortPropertyPath = appendPath(shortPath, shortName);
+
       var target = obj[key];
       if (target && typeof target === 'object'
-        // explicitely exclude the namespace object, adding additional properties to tshi object
+        // explicitely exclude the namespace object, adding additional properties to this object
         // makes things go quite screwy!
         && key !== 'ns') {
-        shortenObject(target);
+        shortenObject(target, enumerator, propertyPath, shortPropertyPath);
       }
       if (target && typeof target === 'function') {
         target = adapt(target);
       }
-      var shortName = findShortestName(enumerator(obj), key);
       if (shortName !== key) {
         obj[shortName] = target;
+        if (path) {
+          console.log(propertyPath + " => " + shortPropertyPath);
+        }
       }
     });
   return obj;
